@@ -14,19 +14,19 @@
 
 - name: set correct selinux contexts
   shell: semanage fcontext -a -t httpd_git_content_t "{{ cgit_project_list }}"
-  when: common_selinux
+  when: cgit_selinux
 
 - name: set correct selinux contexts
   shell: semanage fcontext -a -t httpd_git_content_t "{{ cgit_scan_path }}(/.*)?"
-  when: common_selinux
+  when: cgit_selinux
 
 - name: enable git_cgi_enable_homedirs selinux boolean
   seboolean: name=git_cgi_enable_homedirs state=yes persistent=yes
-  when: common_selinux
+  when: cgit_selinux
 
 - name: restorecon for git dir
   shell: restorecon -v -F -R /srv/git
-  when: common_selinux
+  when: cgit_selinux
 
 - name: add git dirs to restorecond
   lineinfile: "dest=/etc/selinux/restorecond.conf
@@ -39,11 +39,11 @@
         regexp: '^{{ cgit_scan_path }}$' }
     - { line: '{{ cgit_scan_path }}/*',
         regexp: '^{{ cgit_scan_path }}/\*$' }
-  when: common_selinux
+  when: cgit_selinux
 
 - name: enable restorecond
   service: name=restorecond enabled=yes state=running
-  when: common_selinux
+  when: cgit_selinux
 
 - name: install cgit config
   template:

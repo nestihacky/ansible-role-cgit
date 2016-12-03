@@ -7,3 +7,5 @@ cgit_project_list: '{{ cgit_root }}/projects.list'
 
 # httpd alias where cgit is available
 cgit_script_alias: /cgit
+
+cgit_selinux: true
