@@ -11,12 +11,18 @@ See also `defaults/main.yml`.
 Dependencies
 ------------
 
-None so far.
+* nestihacky.common https://github.com/nestihacky/ansible-role-common
+* nestihacky.git_core https://github.com/nestihacky/ansible-role-git-core
 
 Example Playbook
 ----------------
 
-TODO
+    ---
+    - hosts: cgit
+      sudo: yes
+        roles:
+        - nestihacky.cgit
+
 
 License
 -------
