@@ -13,11 +13,11 @@
   file: path={{ cgit_project_list }} mode=644
 
 - name: set correct selinux contexts
-  shell: semanage fcontext -a -t httpd_git_content_t "{{ cgit_project_list }}"
+  shell: semanage fcontext -a -t httpd_sys_content_t "{{ cgit_project_list }}"
   when: common_selinux
 
 - name: set correct selinux contexts
-  shell: semanage fcontext -a -t httpd_git_content_t "{{ cgit_scan_path }}(/.*)?"
+  shell: semanage fcontext -a -t httpd_sys_content_t "{{ cgit_scan_path }}(/.*)?"
   when: common_selinux
 
 - name: enable git_cgi_enable_homedirs selinux boolean
