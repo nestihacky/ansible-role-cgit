@@ -5,6 +5,7 @@
   - cgit
   - highlight
   - policycoreutils-python
+  - policycoreutils-restorecond
 
 - name: enable traversal
   file: path={{ cgit_root }} mode=755
